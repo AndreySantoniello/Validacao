@@ -1,0 +1,43 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+<div class="form-group">
+    <label>CPF</label>
+    <input
+        type="text"
+        formControlName="cpf"
+        class="form-control"
+        placeholder="Digite apenas números"
+        maxlength="11"
+    />
+    <div class="error-message">
+    @if (form.get('cpf')?.touched && form.get('cpf')?.invalid) 
+    { 
+        @if (form.get('cpf')?.errors?.['required']) 
+        {   
+            <small>CPF é obrigatório</small>
+        } 
+            
+        @if (form.get('cpf')?.errors?.['minlength']) 
+        {
+            <small>CPF deve ter no mínimo 11 caracteres.</small>
+        } 
+        @if (form.get('cpf')?.errors?.['maxlength']) 
+        {
+            <small>CPF deve ter no máximo 11 caracteres.</small>
+        } 
+        @if (form.get('cpf')?.errors?.['pattern'])  
+        {
+            <small>CPF deve conter apenas números.</small>
+        } 
+        @if (form.get('cpf')?.errors?.['cpfInvalido']) 
+        {
+            <small>CPF inválido.</small>
+        } 
+        @if (form.get('cpf')?.errors?.['cpfExistente']) 
+        {
+            <small>CPF já cadastrado.</small>
+        } 
+    }
+    </div>
+</div>
+    <button type="submit" [disabled]="form.invalid">Enviar</button>
+</form>
