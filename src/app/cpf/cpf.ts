@@ -13,7 +13,7 @@ import { Observable, map, catchError, of } from 'rxjs';
 export class CpfComponent {
   form: FormGroup;
   
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       cpf: ['', [
         Validators.required,
